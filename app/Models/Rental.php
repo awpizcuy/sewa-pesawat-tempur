@@ -22,6 +22,11 @@ class Rental extends Model
         'status',
         'return_date',
         'fine_amount',
+        'booking_code',
+        'borrower_name',
+        'borrower_identity_number',
+        'payment_method',
+        'total_amount',
     ];
 
     /**

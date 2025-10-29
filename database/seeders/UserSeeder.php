@@ -11,19 +11,23 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      */
     public function run()
-{
-    \App\Models\User::create([
-        'name' => 'Admin User',
-        'email' => 'admin@proyek.com',
-        'password' => bcrypt('password123'),
-        'role' => 'admin',
-    ]);
+    {
+        \App\Models\User::updateOrCreate(
+            ['email' => 'admin@proyek.com'],
+            [
+                'name' => 'Admin User',
+                'password' => bcrypt('password123'),
+                'role' => 'admin',
+            ]
+        );
 
-    \App\Models\User::create([
-        'name' => 'Anggota Biasa',
-        'email' => 'anggota@proyek.com',
-        'password' => bcrypt('password123'),
-        'role' => 'anggota',
-    ]);
+        \App\Models\User::updateOrCreate(
+            ['email' => 'anggota@proyek.com'],
+            [
+                'name' => 'Anggota Biasa',
+                'password' => bcrypt('password123'),
+                'role' => 'anggota',
+            ]
+        );
     }
 }

@@ -29,6 +29,8 @@ class UnitController extends Controller
             'name' => $validated['name'],
             'description' => $validated['description'],
             'stock' => $validated['stock'],
+            'price_per_day' => $validated['price_per_day'] ?? 0,
+            'status' => $validated['status'] ?? 'available',
         ]);
 
         $unit->categories()->attach($validated['categories']);
@@ -57,6 +59,8 @@ class UnitController extends Controller
             'name' => $validated['name'],
             'description' => $validated['description'],
             'stock' => $validated['stock'],
+            'price_per_day' => $validated['price_per_day'] ?? $unit->price_per_day,
+            'status' => $validated['status'] ?? $unit->status,
         ]);
 
         $unit->categories()->sync($validated['categories']);

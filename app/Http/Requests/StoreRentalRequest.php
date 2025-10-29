@@ -17,6 +17,12 @@ class StoreRentalRequest extends FormRequest
     {
         return [
             'unit_id' => 'required|exists:units,id',
+            'borrower_name' => 'required|string|max:255',
+            'borrower_identity_number' => 'required|string|max:100',
+            'rent_date' => 'required|date',
+            'due_date' => 'required|date|after:rent_date',
+            'payment_method' => 'required|in:ewallet,transfer,va',
+            'total_amount' => 'required|numeric|min:0',
         ];
     }
 

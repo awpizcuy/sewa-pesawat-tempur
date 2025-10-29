@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Api\Admin\UnitController as AdminUnitController;
 use App\Http\Controllers\Api\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Api\Admin\RentalController as AdminRentalController;
+use App\Http\Controllers\Api\ChatController;
 
 // === Rute Publik (Autentikasi) ===
     Route::post('/register', [AuthController::class, 'register']);
@@ -23,6 +24,13 @@ use App\Http\Controllers\Api\Admin\RentalController as AdminRentalController;
     Route::get('/units/search', [UnitController::class, 'search']);
     Route::post('/rentals', [RentalController::class, 'store']);
     Route::get('/my-rentals', [RentalController::class, 'myRentals']);
+    Route::get('/my-rentals/history', [RentalController::class, 'rentalHistory']);
+    Route::post('/my-rentals/{rental}/pay-fine', [RentalController::class, 'payFine']);
+    Route::post('/my-rentals/{rental}/return', [RentalController::class, 'returnUnit']);
+    
+    // Chat routes
+    Route::get('/chat/{rentalId}/messages', [ChatController::class, 'getMessages']);
+    Route::post('/chat/{rentalId}/send', [ChatController::class, 'sendMessage']);
     });
 
 // === Rute untuk ADMIN (Wajib Login + Role Admin) ===
@@ -35,5 +43,10 @@ use App\Http\Controllers\Api\Admin\RentalController as AdminRentalController;
     Route::apiResource('/categories', AdminCategoryController::class);
     Route::get('/rentals', [AdminRentalController::class, 'index']);
     Route::post('/rentals/{rental}/return', [AdminRentalController::class, 'processReturn']);
+    Route::patch('/rentals/{rental}/status', [AdminRentalController::class, 'updateStatus']);
     Route::get('/users/{userId}/history', [AdminRentalController::class, 'userRentalHistory']);
+    
+    // Admin chat routes
+    Route::get('/chat/{rentalId}/messages', [ChatController::class, 'getAdminMessages']);
+    Route::post('/chat/{rentalId}/send', [ChatController::class, 'sendAdminMessage']);
 });

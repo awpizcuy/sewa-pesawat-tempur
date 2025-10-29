@@ -17,6 +17,7 @@ class Unit extends Model
         'description',
         'stock',
         'status',
+        'price_per_day',
     ];
 
     /**

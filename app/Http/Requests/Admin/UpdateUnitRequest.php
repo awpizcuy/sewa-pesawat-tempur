@@ -26,6 +26,8 @@ class UpdateUnitRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'stock' => 'required|integer|min:0',
+            'price_per_day' => 'required|numeric|min:0',
+            'status' => 'required|string|in:available,rented',
             'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
         ];

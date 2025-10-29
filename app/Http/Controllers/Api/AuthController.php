@@ -21,21 +21,44 @@ class AuthController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Password::min(8)],
+            'member_identity_number' => 'required|string|max:255',
+            'password' => ['required', 'confirmed', 'min:6'],
             'role' => 'sometimes|string|in:admin,anggota', // 'sometimes' berarti opsional
         ]);
+
+        // Daftar kode identitas anggota yang valid
+        $validCodes = ['AU0598', 'AU9598', 'AU9805', 'AU9895', 'AU9505', 'AU0595'];
+        
+        // Validasi kode identitas
+        $memberCode = strtoupper(trim($validatedData['member_identity_number']));
+        
+        // Cek apakah kode sesuai dengan yang terdaftar
+        if (!in_array($memberCode, $validCodes)) {
+            return response()->json([
+                'message' => 'Kode tidak sesuai gagal register'
+            ], 422);
+        }
+        
+        // Cek apakah kode sudah digunakan
+        $existingUser = User::where('member_identity_number', $memberCode)->first();
+        if ($existingUser) {
+            return response()->json([
+                'message' => 'Kode sudah digunakan'
+            ], 422);
+        }
 
         // Buat user
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
+            'member_identity_number' => $memberCode,
             'password' => Hash::make($validatedData['password']),
             'role' => $validatedData['role'] ?? 'anggota', // Default role adalah 'anggota'
         ]);
 
         // Beri respons
         return response()->json([
-            'message' => 'User registered successfully',
+            'message' => 'Berhasil register',
             'user' => $user
         ], 201); // 201 = Created
     }

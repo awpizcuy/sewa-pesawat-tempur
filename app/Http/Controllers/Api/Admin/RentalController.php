@@ -17,7 +17,6 @@ class RentalController extends Controller
     public function index()
     {
         $rentals = Rental::with(['user:id,name,email', 'unit:id,unit_code,name'])
-                         ->whereIn('status', ['rented', 'overdue'])
                          ->latest('rent_date')
                          ->get();
 
@@ -78,6 +77,24 @@ class RentalController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    /**
+     * Update status peminjaman oleh Admin tanpa menghapus riwayat
+     */
+    public function updateStatus(Request $request, Rental $rental)
+    {
+        $request->validate([
+            'status' => 'required|in:rented,overdue,returned'
+        ]);
+
+        $payload = ['status' => $request->input('status')];
+        if ($payload['status'] === 'returned' && !$rental->return_date) {
+            $payload['return_date'] = Carbon::now();
+        }
+        $rental->update($payload);
+
+        return response()->json(['message' => 'Status diperbarui', 'rental' => $rental]);
     }
 
     /**
