@@ -1,16 +1,16 @@
 # (Nama Project: Penyewaan Pesawat Tempur)
 
-## a. Nama Kelompok
-(Isi nama kelompok)
+## Nama Kelompok
+JET505
 
-## b. Nama Team
+## Nama Team
 - Hafidz Fadilah Tinardi - Backend Developer
 - Avrisad Garin Rahaguna - Frontend Developer
 
-## c. Nama Project
+## Nama Project
 Website Penyewaan Pesawat Tempur
 
-## d. List Fitur
+## List Fitur
 - Autentikasi (Register, Login, Logout)
 - Manajemen Profil User
 - CRUD Unit (Pesawat) oleh Admin
@@ -24,7 +24,7 @@ Website Penyewaan Pesawat Tempur
 
 # Proyek Sewa Pesawat Tempur
 
-Sebuah aplikasi web *full-stack* yang dibangun menggunakan framework Laravel 11 untuk mengelola sistem penyewaan unit (pesawat tempur). Proyek ini mencakup REST API yang aman dan antarmuka frontend dasar menggunakan Laravel Blade.
+Sebuah web *full-stack* yang dibangun menggunakan framework Laravel 11 untuk mengelola sistem penyewaan unit (pesawat tempur). Proyek ini mencakup REST API yang aman dan antarmuka frontend dasar menggunakan Laravel Blade.
 
 ## 🌟 Fitur Utama
 
@@ -70,6 +70,8 @@ Proyek ini menyediakan sistem berbasis peran dengan dua level akses: **Admin** d
 
 1.  **Clone Repository**
     ```bash
+    git clone https://github.com/awpizcuy/sewa-pesawat-tempur.git
+    ```
 
 2.  **Instal Dependensi PHP**
     ```bash
