@@ -5,7 +5,7 @@ JET505
 
 ## Nama Team
 - Hafidz Fadilah Tinardi - Backend Developer
-- Avrisad Garin Rahaguna - Frontend Developer
+- Muhamad Avrisad Garin Rahaguna - Frontend Developer
 
 ## Nama Project
 Website Penyewaan Pesawat Tempur
