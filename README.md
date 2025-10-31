@@ -209,3 +209,6 @@ Berikut adalah daftar endpoint API utama yang disediakan oleh `routes/api.php`. 
 | `GET`   | `/admin/users/{userId}/history`  | Lihat riwayat sewa spesifik per pengguna.   |
 | `GET`   | `/admin/chat/{rentalId}/messages`| (Admin) Dapat pesan chat u/ sewa.           |
 | `POST`  | `/admin/chat/{rentalId}/send`    | (Admin) Kirim pesan chat u/ sewa.           |
+
+### Demo Aplikasi
+- https://drive.google.com/file/d/1U9fhl82SDhTbmtNnZY7xBNJL-E1v-MNZ/view?usp=sharing    
